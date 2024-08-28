@@ -36,14 +36,14 @@ require_once('login.php');
                             <label for="password" class="form-label">Senha</label>
                             <input type="password" class="form-control" id="password" name="senha" required>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                        <input type="submit" class="btn btn-primary w-100" value="enviar">
                     </form>
                     <div class="separator">
                     <span>OU</span>
                 </div>
                     <div class="text-center">
                         <a href="forgot_password.php">Esqueceu a senha?</a><br>
-                        <a href="register.php">Ainda não possui uma Conta?</a>
+                        <a href="cadastro.php">Ainda não possui uma Conta?</a>
                     </div>
                 </div>
             </div>
