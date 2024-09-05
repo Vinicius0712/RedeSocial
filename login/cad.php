@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Criação de um novo objeto Usuario
-        $novo_usuario = new Usuario($usuario, $senha, $email); // Incluindo email no construtor
+        $novo_usuario = new Usuario($usuario, $senha); // Incluindo email no construtor
 
         // Incluindo o novo usuário no banco de dados
         if ($novo_usuario->incluir()) {

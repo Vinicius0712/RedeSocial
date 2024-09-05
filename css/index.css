@@ -1,0 +1,138 @@
+body {
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+}
+
+.navbar-custom {
+    background-color: #eeeef1;
+    border-bottom: 1px solid #ddd;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+    color: #555;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #000;
+}
+
+.navbar-custom .navbar-nav .nav-link.active {
+    color: #1877f2;
+    border-bottom: 3px solid #1877f2;
+}
+
+.navbar-custom .navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-custom .navbar-nav .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.navbar-custom .search-icon {
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.navbar-custom .search-icon:hover {
+    background-color: #e0e0e0;
+}
+
+.search-bar {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.stories {
+    display: flex; /* Usa Flexbox para alinhar os itens horizontalmente */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+    padding: 10px 0; /* Espaçamento superior e inferior */
+}
+
+.stories img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 10px; /* Espaço entre as imagens */
+    border: 2px solid #ddd; /* Borda ao redor das imagens */
+}
+
+
+
+.post img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #aaa;
+}
+
+.profile-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.suggestions .suggestion img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.suggestions {
+    border-left: 1px solid #ddd;
+}
+
+.sidebar a {
+    font-size: 18px;
+    color: #000;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    display: block; /* Faz o link ocupar toda a área disponível */
+}
+
+/* Estilo para links que não contêm imagens */
+.sidebar a:not(:has(img)):hover {
+    background-color: #ddd;
+    border-radius: 10px;
+}
+
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 30px); /* Ajusta a altura da sidebar */
+    overflow-y: auto; /* Adiciona rolagem interna */
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2); /* Adiciona sombra à direita */
+    background-color: #fff; /* Define uma cor de fundo para a sidebar */
+    display: flex; /* Adiciona flexbox à sidebar */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente os itens */
+    padding-top: 20px; /* Espaço superior para a logo */
+}
+
+.sidebar .logo {
+    text-align: center; /* Centraliza o texto e a imagem da logo */
+    margin-bottom: 5px; /* Espaço abaixo da logo */
+}
+
+.sidebar .logo img {
+    max-width: 60%; /* Garante que a imagem da logo não ultrapasse o contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+
