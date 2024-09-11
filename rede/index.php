@@ -12,10 +12,9 @@
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
         <div class="container-fluid">
-            <h2>Synergy</h2>
+            <h2 class="brand-name">Synergy</h2>
             <div class="collapse navbar-collapse justify-content-center order-lg-2">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -39,12 +38,10 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar py-4">
-
-            <a class="logo" href="#">
-                <img src="../img/synergy2.png" class="logo" alt="Synergy Logo">
-            </a>
-            
+            <div class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar py-4" id="side">
+                <a class="logo" href="#">
+                    <img src="../img/synergy2.png" class="logo" alt="Synergy Logo">
+                </a>
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link active" href="#">Página Inicial</a>
@@ -71,7 +68,7 @@
             </div>
 
             <!-- Main Content -->
-            <main class="col-md-6">
+            <main class="col-md-6 content-background">
                 <!-- Stories -->
                 <div class="d-flex align-items-center my-4 stories">
                     <img src="https://via.placeholder.com/60" alt="Story 1">
@@ -115,16 +112,13 @@
             <aside class="col-lg-3 d-none d-lg-block suggestions py-4">
                 <h5>Seus Grupos</h5>
                 <div class="d-flex align-items-center mb-3 suggestion">
-                    <img src="https://via.placeholder.com/40" alt="Sugestão 1">
-                    <p>Grupo 1</p>
+                    <button><img src="https://via.placeholder.com/40" alt="Sugestão 1"> Grupo 1</button>
                 </div>
                 <div class="d-flex align-items-center mb-3 suggestion">
-                    <img src="https://via.placeholder.com/40" alt="Sugestão 2">
-                    <p>Grupo 2</p>
+                    <button><img src="https://via.placeholder.com/40" alt="Sugestão 2"> Grupo 2</button>
                 </div>
                 <div class="d-flex align-items-center mb-3 suggestion">
-                    <img src="https://via.placeholder.com/40" alt="Sugestão 3">
-                    <p>Grupo 3</p>
+                    <button><img src="https://via.placeholder.com/40" alt="Sugestão 3"> Grupo 3</button>
                 </div>
             </aside>
         </div>

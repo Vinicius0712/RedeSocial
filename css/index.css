@@ -1,11 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Dela+Gothic+One&display=swap');
+
+
+
 body {
     background-color: #fafafa;
     font-family: Arial, sans-serif;
 }
 
 .navbar-custom {
-    background-color: #eeeef1;
-    border-bottom: 1px solid #ddd;
+    background-color: #012030;
+}
+
+h2 {
+    color: #ffffff;
 }
 
 .navbar-custom .navbar-nav .nav-link {
@@ -16,17 +23,25 @@ body {
 }
 
 .navbar-custom .navbar-nav .nav-link:hover {
-    color: #000;
+    color: #d8d8d8;
 }
 
 .navbar-custom .navbar-nav .nav-link.active {
-    color: #1877f2;
-    border-bottom: 3px solid #1877f2;
+    color: #45C4B0;
+    border-bottom: 3px solid #45C4B0;
 }
 
 .navbar-custom .navbar-nav .nav-item {
     display: flex;
     align-items: center;
+}
+
+.navbar-custom .brand-name {
+    font-family: "Dela Gothic One", sans-serif;
+    font-size: 28px; /* Ajusta o tamanho da fonte */
+    color: #ffffff;  /* Cor do texto */
+    font-weight: normal; /* Ajusta o peso, se necessário */
+    margin-left: 15px; /* Adiciona margem para espaçamento, se necessário */
 }
 
 .navbar-custom .navbar-nav .profile-icon {
@@ -45,29 +60,20 @@ body {
     background-color: #e0e0e0;
 }
 
-.search-bar {
-    width: 100%;
-    max-width: 250px;
-    border-radius: 20px;
-    padding: 5px 10px;
-}
-
 .stories {
-    display: flex; /* Usa Flexbox para alinhar os itens horizontalmente */
-    justify-content: center; /* Centraliza os itens horizontalmente */
-    overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
-    padding: 10px 0; /* Espaçamento superior e inferior */
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 10px 0;
 }
 
 .stories img {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    margin: 0 10px; /* Espaço entre as imagens */
-    border: 2px solid #ddd; /* Borda ao redor das imagens */
+    margin: 0 10px;
+    border: 2px solid #ddd;
 }
-
-
 
 .post img {
     width: 100%;
@@ -98,6 +104,7 @@ body {
     border-left: 1px solid #ddd;
 }
 
+
 .sidebar a {
     font-size: 18px;
     color: #000;
@@ -108,6 +115,7 @@ body {
 /* Estilo para links que não contêm imagens */
 .sidebar a:not(:has(img)):hover {
     background-color: #ddd;
+    color: #13678A;
     border-radius: 10px;
 }
 
@@ -118,7 +126,6 @@ body {
     height: calc(100vh - 30px); /* Ajusta a altura da sidebar */
     overflow-y: auto; /* Adiciona rolagem interna */
     box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2); /* Adiciona sombra à direita */
-    background-color: #fff; /* Define uma cor de fundo para a sidebar */
     display: flex; /* Adiciona flexbox à sidebar */
     flex-direction: column; /* Organiza os itens verticalmente */
     align-items: center; /* Centraliza horizontalmente os itens */
@@ -135,4 +142,29 @@ body {
     height: auto; /* Mantém a proporção da imagem */
 }
 
+/* Estilo da área dos grupos */
+.suggestion button {
+    background-color: white;
+    border: none;
+    text-align: left;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 
+.suggestion button img {
+    border-radius: 50%;
+}
+
+.suggestion button:hover {
+    background-color: #f0f0f0;
+}
+
+/* Adicionando o background da imagem fornecida */
+.content-background {
+    background-image: url('../img/back.jpg');
+    background-size: cover;
+    background-position: center;
+}

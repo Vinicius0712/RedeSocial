@@ -1,264 +1,166 @@
-<!DOCTYPE html>
-<html lang="en">
+body {
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Synergy - Página Principal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            background-color: #fafafa;
-            font-family: Arial, sans-serif;
-        }
+.navbar-custom {
+    background-color: #012030;
+    border-bottom: 1px solid #ddd;
+}
 
-        .navbar-custom {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-        }
+h2 {
+    color: #ffffff;
+}
 
-        .navbar-custom .navbar-brand {
-            font-size: 24px;
-            color: #1877f2;
-        }
+.navbar-custom .navbar-nav .nav-link {
+    color: #555;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
-        .navbar-custom .navbar-nav .nav-link {
-            color: #555;
-            font-size: 18px;
-            margin-left: 10px;
-            margin-right: 10px;
-        }
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #d8d8d8;
+}
 
-        .navbar-custom .navbar-nav .nav-link:hover {
-            color: #000;
-        }
+.navbar-custom .navbar-nav .nav-link.active {
+    color: #45C4B0;
+    border-bottom: 3px solid #45C4B0;
+}
 
-        .navbar-custom .navbar-nav .nav-link.active {
-            color: #1877f2;
-            border-bottom: 3px solid #1877f2;
-        }
+.navbar-custom .navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
 
-        .navbar-custom .navbar-nav .nav-item {
-            display: flex;
-            align-items: center;
-        }
+.navbar-custom .navbar-nav .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
 
-        .navbar-custom .navbar-nav .profile-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
+.navbar-custom .search-icon {
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    padding: 8px;
+}
 
-        .navbar-custom .search-icon {
-            background-color: #f0f0f0;
-            border-radius: 50%;
-            padding: 8px;
-        }
+.navbar-custom .search-icon:hover {
+    background-color: #e0e0e0;
+}
 
-        .navbar-custom .search-icon:hover {
-            background-color: #e0e0e0;
-        }
+.search-bar {
+    width: 100%;
+    max-width: 250px;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
 
-        .search-bar {
-            width: 100%;
-            max-width: 250px;
-            border-radius: 20px;
-            padding: 5px 10px;
-        }
+.stories {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    padding: 10px 0;
+}
 
-        .stories img {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            margin-right: 10px;
-            border: 2px solid #ddd;
-        }
+.stories img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 10px;
+    border: 2px solid #ddd;
+}
 
-        .post img {
-            width: 100%;
-            border-radius: 10px;
-        }
+.post img {
+    width: 100%;
+    border-radius: 10px;
+}
 
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #aaa;
-        }
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #aaa;
+}
 
-        .profile-info img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+.profile-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
-        .suggestions .suggestion img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+.suggestions .suggestion img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
-        .suggestions {
-            border-left: 1px solid #ddd;
-        }
+.suggestions {
+    border-left: 1px solid #ddd;
+}
 
-        .sidebar a {
-            font-size: 18px;
-            color: #000;
-        }
 
-        .sidebar a:hover {
-            background-color: #ddd;
-            border-radius: 10px;
-        }
+.sidebar a {
+    font-size: 18px;
+    color: #000;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    display: block; /* Faz o link ocupar toda a área disponível */
+}
 
-        .sidebar {
-            position: -webkit-sticky;
-            position: sticky;
-            top: 0;
-            height: calc(100vh - 30px); /* Ajusta a altura da sidebar */
-            overflow-y: auto; /* Adiciona rolagem interna */
-            box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2); /* Adiciona sombra à direita */
-            background-color: #fff; /* Define uma cor de fundo para a sidebar */
-        }
-    </style>
-</head>
+/* Estilo para links que não contêm imagens */
+.sidebar a:not(:has(img)):hover {
+    background-color: #ddd;
+    color: #13678A;
+    border-radius: 10px;
+}
 
-<body>
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 30px); /* Ajusta a altura da sidebar */
+    overflow-y: auto; /* Adiciona rolagem interna */
+    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2); /* Adiciona sombra à direita */
+    display: flex; /* Adiciona flexbox à sidebar */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente os itens */
+    padding-top: 20px; /* Espaço superior para a logo */
+}
 
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"><i class="fab fa-facebook"></i></a>
-            <div class="d-flex order-lg-1">
-                <a href="#" class="nav-link search-icon">
-                    <i class="fas fa-search"></i>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse justify-content-center order-lg-2">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fas fa-home"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user-friends"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-tv"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-store"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-users"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="d-flex order-lg-3">
-                <a href="#" class="nav-link"><i class="fas fa-th"></i></a>
-                <a href="#" class="nav-link"><i class="fab fa-facebook-messenger"></i></a>
-                <a href="#" class="nav-link"><i class="fas fa-bell"></i><span class="badge bg-danger">17</span></a>
-                <a href="#" class="nav-link"><img src="https://via.placeholder.com/40" alt="Profile" class="profile-icon"></a>
-            </div>
-        </div>
-    </nav>
+.sidebar .logo {
+    text-align: center; /* Centraliza o texto e a imagem da logo */
+    margin-bottom: 5px; /* Espaço abaixo da logo */
+}
 
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar py-4">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Página Inicial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Explorar</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Reels</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mensagens</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Notificações</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Criar</a>
-                    </li>
-                </ul>
-            </div>
+.sidebar .logo img {
+    max-width: 60%; /* Garante que a imagem da logo não ultrapasse o contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+}
 
-            <!-- Main Content -->
-            <main class="col-md-6">
-                <!-- Stories -->
-                <div class="d-flex align-items-center my-4 stories">
-                    <img src="https://via.placeholder.com/60" alt="Story 1">
-                    <img src="https://via.placeholder.com/60" alt="Story 2">
-                    <img src="https://via.placeholder.com/60" alt="Story 3">
-                    <img src="https://via.placeholder.com/60" alt="Story 4">
-                </div>
+/* Estilo da área dos grupos */
+.suggestion button {
+    background-color: white;
+    border: none;
+    text-align: left;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 
-                <!-- Post -->
-                <div class="card mb-4 post">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3 profile-info">
-                            <img src="https://via.placeholder.com/50" alt="Profile">
-                            <div>
-                                <h5 class="card-title mb-0">Nome do Usuário</h5>
-                                <p class="card-text"><small class="text-muted">2 horas atrás</small></p>
-                            </div>
-                        </div>
-                        <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Publicação">
-                        <p class="card-text mt-3">Descrição da publicação aqui...</p>
-                    </div>
-                </div>
+.suggestion button img {
+    border-radius: 50%;
+}
 
-                <!-- Another Post -->
-                <div class="card mb-4 post">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3 profile-info">
-                            <img src="https://via.placeholder.com/50" alt="Profile">
-                            <div>
-                                <h5 class="card-title mb-0">Nome do Usuário</h5>
-                                <p class="card-text"><small class="text-muted">4 horas atrás</small></p>
-                            </div>
-                        </div>
-                        <img src="https://via.placeholder.com/500x300" class="card-img-top" alt="Publicação">
-                        <p class="card-text mt-3">Descrição da publicação aqui...</p>
-                    </div>
-                </div>
-            </main>
+.suggestion button:hover {
+    background-color: #f0f0f0;
+}
 
-            <!-- Suggestions -->
-            <aside class="col-lg-3 d-none d-lg-block suggestions py-4">
-                <h5>Seus Grupos</h5>
-                <div class="d-flex align-items-center mb-3 suggestion">
-                    <img src="https://via.placeholder.com/40" alt="Sugestão 1">
-                    <p>Grupo 1</p>
-                </div>
-                <div class="d-flex align-items-center mb-3 suggestion">
-                    <img src="https://via.placeholder.com/40" alt="Sugestão 2">
-                    <p>Grupo 2</p>
-                </div>
-                <div class="d-flex align-items-center mb-3 suggestion">
-                    <img src="https://via.placeholder.com/40" alt="Sugestão 3">
-                    <p>Grupo 3</p>
-                </div>
-            </aside>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <p>&copy; 2024 Synergy. Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-
-</html>
+/* Adicionando o background da imagem fornecida */
+.content-background {
+    background-image: url('/caminho/para/a/imagem.png');
+    background-size: cover;
+    background-position: center;
+}
