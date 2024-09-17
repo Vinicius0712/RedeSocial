@@ -3,13 +3,31 @@
 
 
 body {
-    background-color: #fafafa;
+    background-color: #000000;
     font-family: Arial, sans-serif;
 }
 
 .navbar-custom {
-    background-color: #012030;
+    background-image: linear-gradient(9deg, #27776b, #063d58); /* Gradiente diagonal de azul escuro para azul claro */
+    background-color: #012030; /* Cor de fallback no caso de o gradiente não ser suportado */
 }
+
+/* Título abaixo da logo */
+.site-name {
+    display: none; /* Inicialmente oculto */
+    font-size: 30px;
+    color: #000;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0; /* Invisível inicialmente */
+    transition: opacity 0.3s ease-in-out; /* Transição suave de opacidade */
+}
+
+.site-name.show {
+    display: block; /* Mostra o título */
+    opacity: 1; /* Transição para visível */
+}
+
 
 h2 {
     color: #ffffff;
@@ -49,15 +67,70 @@ h2 {
     height: 40px;
     border-radius: 50%;
 }
-
-.navbar-custom .search-icon {
-    background-color: #f0f0f0;
-    border-radius: 50%;
-    padding: 8px;
-}
-
 .navbar-custom .search-icon:hover {
     background-color: #e0e0e0;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+    font-size: 20px; /* Define o tamanho dos ícones */
+    width: 20px; /* Mantém a largura uniforme dos ícones */
+    height: 20px; /* Mantém a altura uniforme dos ícones */
+    display: inline-block; /* Garante que os ícones mantenham o tamanho */
+    text-align: center; /* Centraliza o ícone dentro do espaço disponível */
+    vertical-align: middle; /* Centraliza verticalmente o ícone */
+}
+
+.sidebar a {
+    font-size: 18px;
+    color: #000;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    display: block; /* Faz o link ocupar toda a área disponível */
+}
+
+/* Estilo para links que não contêm imagens */
+.sidebar a:not(:has(img)):hover {
+    background-color: #ddd;
+    color: #13678A;
+    border-radius: 10px;
+}
+
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Ajusta a altura da sidebar */
+    overflow-y: auto; /* Adiciona rolagem interna */
+    display: flex; /* Adiciona flexbox à sidebar */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente os itens */
+    padding-top: 20px; /* Espaço superior para a logo */
+}
+
+.sidebar ul {
+    padding: 0; /* Remove qualquer padding padrão da lista */
+    margin: 0; /* Remove margens adicionais */
+    width: 100%; /* Garante que a lista ocupe toda a largura */
+}
+
+
+.sidebar li {
+    width: 100%; /* Garante que os itens ocupem toda a largura da lista */
+    margin: 7px;
+}
+
+.main-content {
+    margin-left: 17%; /* Ajuste o valor conforme necessário para que o conteúdo principal não sobreponha a sidebar */
+}
+
+.sidebar .logo {
+    text-align: center; /* Centraliza o texto e a imagem da logo */
+    margin-bottom: 5px; /* Espaço abaixo da logo */
+}
+
+.sidebar .logo img {
+    max-width: 60%; /* Garante que a imagem da logo não ultrapasse o contêiner */
+    height: auto; /* Mantém a proporção da imagem */
 }
 
 .stories {
@@ -78,6 +151,11 @@ h2 {
 .post img {
     width: 100%;
     border-radius: 10px;
+}
+
+.post{
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .footer {
@@ -101,45 +179,13 @@ h2 {
 }
 
 .suggestions {
-    border-left: 1px solid #ddd;
+    color: #ddd;
+    background-image: url('../img/back.jpg');
+    background-size: cover;
+    background-position: center;
 }
-
-
-.sidebar a {
-    font-size: 18px;
-    color: #000;
-    text-decoration: none; /* Remove o sublinhado dos links */
-    display: block; /* Faz o link ocupar toda a área disponível */
-}
-
-/* Estilo para links que não contêm imagens */
-.sidebar a:not(:has(img)):hover {
-    background-color: #ddd;
-    color: #13678A;
-    border-radius: 10px;
-}
-
-.sidebar {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    height: calc(100vh - 30px); /* Ajusta a altura da sidebar */
-    overflow-y: auto; /* Adiciona rolagem interna */
-    box-shadow: 3px 0 5px rgba(0, 0, 0, 0.2); /* Adiciona sombra à direita */
-    display: flex; /* Adiciona flexbox à sidebar */
-    flex-direction: column; /* Organiza os itens verticalmente */
-    align-items: center; /* Centraliza horizontalmente os itens */
-    padding-top: 20px; /* Espaço superior para a logo */
-}
-
-.sidebar .logo {
-    text-align: center; /* Centraliza o texto e a imagem da logo */
-    margin-bottom: 5px; /* Espaço abaixo da logo */
-}
-
-.sidebar .logo img {
-    max-width: 60%; /* Garante que a imagem da logo não ultrapasse o contêiner */
-    height: auto; /* Mantém a proporção da imagem */
+.sug{
+    border-radius: 12px;
 }
 
 /* Estilo da área dos grupos */
@@ -168,3 +214,4 @@ h2 {
     background-size: cover;
     background-position: center;
 }
+

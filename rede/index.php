@@ -39,36 +39,42 @@
         <div class="row">
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar py-4" id="side">
-                <a class="logo" href="#">
-                    <img src="../img/synergy2.png" class="logo" alt="Synergy Logo">
-                </a>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">Página Inicial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">*</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">*</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">*</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">*</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">*</a>
-                    </li>
-                </ul>
-            </div>
+    <a class="logo" href="#">
+        <img src="../img/synergy2.png" class="logo" alt="Synergy Logo">
+    </a>
+
+    <h4 class="site-name" id="siteName">Synergy</h4><br>
+
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="#"><i class="fas fa-home"></i> Página Inicial</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-user"></i> Meu Perfil</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-users"></i> Amigos</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-comments"></i> Mensagens</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-cog"></i> Configurações</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><i class="fas fa-bell"></i> Notificações</a>
+        </li>
+
+        <!-- Sair -->
+        <li class="sair-link">
+        <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    </li>
+    </ul>
+</div>
+
 
             <!-- Main Content -->
-            <main class="col-md-6 content-background">
+            <main class="col-md-7 content-background">
                 <!-- Stories -->
                 <div class="d-flex align-items-center my-4 stories">
                     <img src="https://via.placeholder.com/60" alt="Story 1">
@@ -77,7 +83,6 @@
                     <img src="https://via.placeholder.com/60" alt="Story 4">
                 </div>
 
-                <!-- Post -->
                 <div class="card mb-4 post">
                     <div class="card-body">
                         <div class="d-flex align-items-center mb-3 profile-info">
@@ -109,26 +114,33 @@
             </main>
 
             <!-- Suggestions -->
-            <aside class="col-lg-3 d-none d-lg-block suggestions py-4">
+            <aside class="col-lg-3 d-none d-lg-block suggestions py-3">
                 <h5>Seus Grupos</h5>
                 <div class="d-flex align-items-center mb-3 suggestion">
-                    <button><img src="https://via.placeholder.com/40" alt="Sugestão 1"> Grupo 1</button>
+                    <button class="sug"><img src="https://via.placeholder.com/40" alt="Sugestão 1"> Grupo 1</button>
                 </div>
                 <div class="d-flex align-items-center mb-3 suggestion">
-                    <button><img src="https://via.placeholder.com/40" alt="Sugestão 2"> Grupo 2</button>
+                <button class="sug"><img src="https://via.placeholder.com/40" alt="Sugestão 2"> Grupo 2</button>
                 </div>
                 <div class="d-flex align-items-center mb-3 suggestion">
-                    <button><img src="https://via.placeholder.com/40" alt="Sugestão 3"> Grupo 3</button>
+                <button class="sug"><img src="https://via.placeholder.com/40" alt="Sugestão 3"> Grupo 3</button>
                 </div>
             </aside>
         </div>
     </div>
-
-    <footer class="footer">
-        <p>&copy; 2024 Synergy. Todos os direitos reservados.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+<script>
+    window.addEventListener('scroll', function() {
+        var logo = document.querySelector('.logo img');
+        var siteName = document.getElementById('siteName');
+
+        // Verifica se a página foi rolada mais de 100px
+        if (window.scrollY > 100) {
+            siteName.classList.add('show');
+        } else {
+            siteName.classList.remove('show');
+        }
+    });
+</script>
 
 </html>
