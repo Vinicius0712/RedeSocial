@@ -12,6 +12,7 @@ body {
     background-color: #012030; /* Cor de fallback no caso de o gradiente não ser suportado */
 }
 
+
 /* Título abaixo da logo */
 .site-name {
     display: none; /* Inicialmente oculto */
@@ -34,7 +35,7 @@ h2 {
 }
 
 .navbar-custom .navbar-nav .nav-link {
-    color: #555;
+    color: #747171;
     font-size: 18px;
     margin-left: 10px;
     margin-right: 10px;
@@ -62,13 +63,10 @@ h2 {
     margin-left: 15px; /* Adiciona margem para espaçamento, se necessário */
 }
 
-.navbar-custom .navbar-nav .profile-icon {
+.navbar-custom .navbar-nav .nav-link.profile {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-}
-.navbar-custom .search-icon:hover {
-    background-color: #e0e0e0;
 }
 
 .sidebar .nav-link i {
@@ -105,7 +103,9 @@ h2 {
     flex-direction: column; /* Organiza os itens verticalmente */
     align-items: center; /* Centraliza horizontalmente os itens */
     padding-top: 20px; /* Espaço superior para a logo */
+    padding: 1rem;
 }
+
 
 .sidebar ul {
     padding: 0; /* Remove qualquer padding padrão da lista */
@@ -117,6 +117,24 @@ h2 {
 .sidebar li {
     width: 100%; /* Garante que os itens ocupem toda a largura da lista */
     margin: 7px;
+}
+
+
+.sair-link {
+    margin-top: auto; /* Empurra o botão "Sair" para o final da sidebar */
+    
+}
+
+.sair-link .nav-link {
+    color: red; /* Cor de fundo vermelha */
+    width: 100%; /* Garante que os itens ocupem toda a largura da lista */
+    border-radius: 5px; /* Bordas arredondadas para o botão */
+    transition: background-color 0.7s ease; /* Animação suave ao passar o mouse */
+}
+
+.sair-link .nav-link:hover {
+    color: darkred; /* Muda para um vermelho mais escuro ao passar o mouse */
+    text-decoration: none; /* Remove o sublinhado */
 }
 
 .main-content {
