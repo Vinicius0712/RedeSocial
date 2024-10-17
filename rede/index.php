@@ -22,28 +22,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-        <div class="container-fluid">
-            <h2 class="brand-name"><a href="index.php" style="text-decoration: none; color: inherit;">Synergy</a></h2>
-            <div class="collapse navbar-collapse justify-content-center order-lg-2">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fas fa-home"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user-friends"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-store"></i></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="d-flex order-lg-3">
-                <a href="#" class="nav-link"><i class="fas fa-bell"></i><span class="badge bg-danger">17</span></a>
-                <a href="perfil.php" class="nav-link"><img src="https://via.placeholder.com/40" alt="Profile" class="profile-icon"></a>
-            </div>
-        </div>
-    </nav>
+<?php include('../menu.php'); ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -60,7 +39,7 @@ if (!isset($_SESSION['user_id'])) {
                         <a class="nav-link active" href="#"><i class="fas fa-home"></i> Página Inicial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i> Meu Perfil</a>
+                        <a class="nav-link" href="../perfil/perfil.php"><i class="fas fa-user"></i> Meu Perfil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fas fa-comments"></i> Mensagens</a>

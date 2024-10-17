@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($userId) {
             $_SESSION['user_id'] = $userId; // Armazenando o ID do usuário na sessão
-            header('Location: ../rede/index.php');
+            header('Location: ../perfil/perfil.php');
             exit(); 
         } else {
             $_SESSION['error_message'] = "Usuário ou senha incorretos";
