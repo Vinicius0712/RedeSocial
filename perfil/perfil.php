@@ -28,9 +28,9 @@ require_once('../classes/Database.class.php');
     <div class="container mt-5">
         <div class="profile-header position-relative text-center">
             <!-- Ícone de edição no canto superior direito -->
-            <a href="#" class="edit-icon position-absolute" style="top: 10px; right: 10px;">
-                <i class="fas fa-edit"></i>
-            </a>
+            <a href="#" class="edit-icon position-absolute" style="top: 10px; right: 10px;" data-bs-toggle="modal" data-bs-target="#editarImagemModal">
+    <i class="fas fa-edit"></i>
+</a>
 
             <!-- Imagem do perfil -->
             <img src="<?php echo htmlspecialchars($fotoPerfil); ?>" alt="Foto de Perfil" class="rounded-circle"
@@ -123,6 +123,40 @@ require_once('../classes/Database.class.php');
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="editarImagemModal" tabindex="-1" aria-labelledby="editarImagemModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarImagemModalLabel">Editar Imagem de Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="atualizar_imagem_perfil.php" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="novaImagemPerfil" class="form-label">Selecione uma nova imagem</label>
+                        <input type="file" class="form-control" id="novaImagemPerfil" name="novaImagemPerfil" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+    <div class="alert alert-success text-center" role="alert">
+        Imagem de perfil atualizada com sucesso!
+    </div>
+<?php endif; ?>
+
+<?php if (isset($_GET['erro'])): ?>
+    <div class="alert alert-danger text-center" role="alert">
+        Erro ao atualizar a imagem de perfil. Por favor, tente novamente.
+    </div>
+<?php endif; ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
