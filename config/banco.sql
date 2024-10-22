@@ -20,10 +20,10 @@ CREATE TABLE perfis (
 CREATE TABLE publicacoes (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
-    imagem VARCHAR(255),
+    imagem VARCHAR(255) NOT NULL,
     descricao TEXT,
-    data_publicacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
 
