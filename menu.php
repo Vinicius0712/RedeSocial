@@ -30,7 +30,7 @@ $fotoPerfil = isset($_SESSION['foto_perfil']) ? '../img/' . $_SESSION['foto_perf
             <!-- <a href="#" class="nav-link"><i class="fas fa-bell"></i><span class="badge bg-danger"></span></a> -->
 
             <a href="../perfil/perfil.php" class="nav-link">
-                <img src="<?php echo $fotoPerfil; ?>" alt="Profile" class="profile-icon" style="width: 50px; height: 45px; border-radius: 50%;">
+                <img src="<?php echo $fotoPerfil; ?>" alt="Profile" class="profile-icon" draggable="false" style="width: 50px; height: 45px; border-radius: 50%;">
             </a>
 
         </div>

@@ -41,7 +41,7 @@ h2 {
 }
 
 .navbar-custom .navbar-nav .nav-link:hover {
-    color: #d8d8d8;
+    color: #ffffff;
 }
 
 .navbar-custom .navbar-nav .nav-link.active {
@@ -165,11 +165,11 @@ h2 {
     border: 2px solid #ddd;
 }
 
-.post img {
+.post img:not(#profile) {
     width: 100%; /* Reduzir a largura da imagem */
     border-radius: 8px; /* Borda arredondada na imagem */
     max-height: 500px; /* Limitar a altura máxima da imagem */
-    object-fit: cover; /* Ajusta a imagem para cobrir a área disponível sem distorção */
+    object-fit: contain; /* Ajusta a imagem para cobrir a área disponível sem distorção */
 }
 
 .post {
@@ -187,7 +187,7 @@ h2 {
 }
 
 .profile-info img {
-    width: 50px;
+    width: 60px;
     height: 50px;
     border-radius: 50%;
     margin-right: 10px;

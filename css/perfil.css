@@ -112,9 +112,146 @@ color: #333;
 
 .nav-link-custom:hover {
     color: #67696b;
-    background-color: #e9ecef;
+    background-color: #ffffff;
     text-decoration: none;
 }
 
+.post {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.post img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-12 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.post img {
+    transition: all 0.3s ease;
+}
+
+.post img:hover {
+    transform: scale(1.05); /* Efeito de zoom na imagem ao passar o mouse */
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.btn-full {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.edit-icon {
+    font-size: 20px;
+    text-decoration: none;
+    color: #27776b;
+}
+
+.edit-icon:hover {
+    color: #1da896;
+}
+
+/* Modal Header */
+.modal-header {
+    background-color: #27645b; /* Fundo azul Bootstrap */
+    color: white;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+/* Botão de Fechar Modal */
+.btn-close {
+    filter: invert(1); /* Deixa o ícone de fechar em branco */
+}
+
+/* Estilização do Formulário */
+.modal-body {
+    padding: 20px;
+    background-color: #f0f0f0; /* Fundo cinza claro */
+}
+
+/* Campos de Entrada */
+.form-control {
+    border-radius: 0.5rem;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #58ddc9;
+}
+
+/* Label dos Campos */
+.form-label {
+    font-weight: bold;
+    color: #3f4449;
+}
+
+/* Modal Footer */
+.modal-footer {
+    border-top: none;
+    padding-top: 15px;
+}
+
+/* Botão de Cancelar */
+.btn-secondary {
+    background-color: #6c757d;
+    border-radius: 0.5rem;
+}
+
+/* Botão de Publicar */
+.btn-primary {
+    background-color: #26665c;
+    border-radius: 0.5rem;
+}
+
+.btn-primary:hover {
+    background-color: #30a08f;
+}
+
+/* Ajustes Gerais */
+.modal-content {
+    border-radius: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (min-width: 768px) {
+    .col-md-6 {
+        max-width: 45%; /* Limita a largura das publicações para evitar ultrapassar as linhas */
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-4 {
+        max-width: 30%; /* Em telas grandes, as publicações ocupam menos espaço */
+    }
+}
+
+/* Efeito hover para destacar as imagens */
+.post img:hover {
+    transform: scale(1.05); /* Zoom suave ao passar o mouse */
+}
 
 

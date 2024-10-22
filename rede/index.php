@@ -52,7 +52,7 @@ try {
             <!-- Sidebar -->
             <div class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar py-4" id="side">
                 <a class="logo" href="#">
-                    <img src="../img/synergy2.png" class="logo" alt="Synergy Logo">
+                    <img src="../img/synergy2.png" class="logo" alt="Synergy Logo" draggable="false">
                 </a>
 
                 <h4 class="site-name" id="siteName">Synergy</h4><br>
@@ -91,9 +91,9 @@ try {
                         <div class="card-body">
                             <div class="d-flex align-items-center mb-3 profile-info">
                                 <?php
-                                $fotoPerfil = !empty($publicacao['foto_perfil']) ? '../img/' . htmlspecialchars($publicacao['foto_perfil']) : '../img/default.jpg' ;
+                                $fotoPerfil = !empty($publicacao['foto_perfil']) ? '../img/' . htmlspecialchars($publicacao['foto_perfil']) : '../img/default.jpg';
                                 ?>
-                                <img src="<?= $fotoPerfil ?>" alt="Profile" class="rounded-circle" width="50" height="50">
+                                <img src="<?= $fotoPerfil ?>" alt="Profile" id="profile" class="rounded-circle" width="50" height="50">
                                 <div>
                                     <h5 class="card-title mb-0"><?= htmlspecialchars($publicacao['username']) ?></h5>
                                     <p class="card-text"><small
@@ -101,7 +101,8 @@ try {
                                     </p>
                                 </div>
                             </div>
-                            <img src="../uploads/<?= htmlspecialchars($publicacao['imagem']) ?>" class="card-img-top" alt="Publicação">
+                            <img src="../uploads/<?= htmlspecialchars($publicacao['imagem']) ?>" class="card-img-top"
+                                alt="Publicação">
                             <p class="card-text mt-3"><?= htmlspecialchars($publicacao['descricao']) ?></p>
                         </div>
                     </div>
