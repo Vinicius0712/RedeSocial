@@ -1,9 +1,32 @@
 <?php
+// Inclui a classe Database para conectar ao banco de dados
+require_once('../classes/Database.class.php');
+
 session_start();
 
-// Verifica se o usuário está logado, caso contrário redireciona para o login
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login/index.php");
+    exit();
+}
+
+$db = Database::getInstance();
+
+if (!$db) {
+    die("Erro ao conectar com o banco de dados.");
+}
+
+try {
+    // Consulta SQL para obter as publicações junto com os dados do usuário
+    $query = $db->prepare("SELECT publicacoes.*, usuarios.usuario AS username, perfis.foto_perfil 
+                           FROM publicacoes 
+                           JOIN usuarios ON publicacoes.usuario_id = usuarios.id
+                           JOIN perfis ON usuarios.id = perfis.usuario_id
+                           ORDER BY publicacoes.created_at DESC");
+    $query->execute();
+    $publicacoes = $query->fetchAll(PDO::FETCH_ASSOC);
+
+} catch (PDOException $e) {
+    echo "Erro ao buscar publicações: " . $e->getMessage();
     exit();
 }
 ?>
@@ -22,7 +45,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 
 <body>
-<?php include('../menu.php'); ?>
+    <?php include('../menu.php'); ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -48,16 +71,13 @@ if (!isset($_SESSION['user_id'])) {
                         <a class="nav-link" href="#"><i class="fas fa-cog"></i> Configurações</a>
                     </li>
 
-                    <!-- Sair -->
                     <li class="sair-link">
                         <a class="nav-link" href="../acao/logout.php"><i class="fas fa-sign-out-alt"></i> Sair</a>
                     </li>
                 </ul>
             </div>
 
-            <!-- Main Content -->
             <main class="col-md-7 content-background">
-                <!-- Stories -->
                 <div class="d-flex align-items-center my-4 stories">
                     <img src="https://via.placeholder.com/60" alt="Story 1">
                     <img src="https://via.placeholder.com/60" alt="Story 2">
@@ -65,48 +85,27 @@ if (!isset($_SESSION['user_id'])) {
                     <img src="https://via.placeholder.com/60" alt="Story 4">
                 </div>
 
-                <div class="card mb-2 post">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3 profile-info">
-                            <img src="https://via.placeholder.com/50" alt="Profile">
-                            <div>
-                                <h5 class="card-title mb-0">Nome do Usuário</h5>
-                                <p class="card-text"><small class="text-muted">2 horas atrás</small></p>
+                <!-- Loop para exibir as publicações -->
+                <?php foreach ($publicacoes as $publicacao): ?>
+                    <div class="card mb-2 post">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3 profile-info">
+                                <?php
+                                $fotoPerfil = !empty($publicacao['foto_perfil']) ? '../img/' . htmlspecialchars($publicacao['foto_perfil']) : '../img/default.jpg' ;
+                                ?>
+                                <img src="<?= $fotoPerfil ?>" alt="Profile" class="rounded-circle" width="50" height="50">
+                                <div>
+                                    <h5 class="card-title mb-0"><?= htmlspecialchars($publicacao['username']) ?></h5>
+                                    <p class="card-text"><small
+                                            class="text-muted"><?= date('d M Y H:i', strtotime($publicacao['created_at'])) ?></small>
+                                    </p>
+                                </div>
                             </div>
+                            <img src="../uploads/<?= htmlspecialchars($publicacao['imagem']) ?>" class="card-img-top" alt="Publicação">
+                            <p class="card-text mt-3"><?= htmlspecialchars($publicacao['descricao']) ?></p>
                         </div>
-                        <img src="../img/jantar.png" class="card-img-top" alt="Publicação">
-                        <p class="card-text mt-3">Descrição da publicação aqui...</p>
                     </div>
-                </div>
-
-                <!-- Another Post -->
-                <div class="card mb-2 post">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3 profile-info">
-                            <img src="https://via.placeholder.com/50" alt="Profile">
-                            <div>
-                                <h5 class="card-title mb-0">Nome do Usuário</h5>
-                                <p class="card-text"><small class="text-muted">4 horas atrás</small></p>
-                            </div>
-                        </div>
-                        <img src="../img/parque.jpg" class="card-img-top" alt="Publicação">
-                        <p class="card-text mt-3">Descrição da publicação aqui...</p>
-                    </div>
-                </div>
-
-                <div class="card mb-2 post">
-                    <div class="card-body">
-                        <div class="d-flex align-items-center mb-3 profile-info">
-                            <img src="https://via.placeholder.com/50" alt="Profile">
-                            <div>
-                                <h5 class="card-title mb-0">Nome do Usuário</h5>
-                                <p class="card-text"><small class="text-muted">4 horas atrás</small></p>
-                            </div>
-                        </div>
-                        <img src="../img/casal.jpg" class="card-img-top" alt="Publicação">
-                        <p class="card-text mt-3">Descrição da publicação aqui...</p>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </main>
 
             <!-- Suggestions -->
@@ -125,8 +124,9 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
 </body>
+
 <script>
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         var logo = document.querySelector('.logo img');
         var siteName = document.getElementById('siteName');
 

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Dela+Gothic+One&display=swap');
 
 
-
 body {
     background-color: #000000;
     font-family: Arial, sans-serif;
@@ -167,13 +166,18 @@ h2 {
 }
 
 .post img {
-    width: 100%;
-    border-radius: 10px;
+    width: 100%; /* Reduzir a largura da imagem */
+    border-radius: 8px; /* Borda arredondada na imagem */
+    max-height: 500px; /* Limitar a altura máxima da imagem */
+    object-fit: cover; /* Ajusta a imagem para cobrir a área disponível sem distorção */
 }
 
-.post{
+.post {
     background-color: #ffffff;
     color: #000000;
+    margin: 10px; /* Reduzir a margem entre os posts */
+    padding: 10px; /* Ajustar o padding do cartão */
+    border-radius: 8px; /* Opcional: adicionar bordas arredondadas */
 }
 
 .footer {
