@@ -175,8 +175,8 @@ h2 {
 .post {
     background-color: #ffffff;
     color: #000000;
-    margin: 10px; /* Reduzir a margem entre os posts */
-    padding: 10px; /* Ajustar o padding do cartão */
+    margin: 30px; /* Reduzir a margem entre os posts */
+    padding: 1px; /* Ajustar o padding do cartão */
     border-radius: 8px; /* Opcional: adicionar bordas arredondadas */
 }
 
