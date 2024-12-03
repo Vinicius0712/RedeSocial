@@ -1,34 +1,33 @@
 <?php
-// Inclua a conexão com o banco de dados
-require_once('../classes/Database.class.php'); // Ajuste o caminho conforme necessário
+require_once('../classes/Database.class.php');
+require_once('../vendor/autoload.php'); // Certifique-se de que o Cloudinary está instalado
+use Cloudinary\Api\Upload\UploadApi;
 
-session_start(); // Certifique-se de que a sessão esteja iniciada, pois você está usando $_SESSION['user_id']
+header('Content-Type: application/json');
 
-// Código de upload de imagem
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $fileTmpPath = $_FILES['imagem']['tmp_name'];
-    $fileName = $_FILES['imagem']['name'];
-    $fileSize = $_FILES['imagem']['size'];
-    $fileType = $_FILES['imagem']['type'];
-    $fileNameCmps = explode(".", $fileName);
-    $fileExtension = strtolower(end($fileNameCmps));
+try {
+    if (isset($_FILES['imagem']['tmp_name'])) {
+        // Faz o upload da imagem no Cloudinary
+        $upload = (new UploadApi())->upload($_FILES['imagem']['tmp_name'], [
+            'folder' => 'synergy/perfil',
+            'public_id' => 'usuario_' . $_SESSION['user_id'], 
+            'overwrite' => true,
+        ]);
 
-    $newFileName = md5(time() . $fileName) . '.' . $fileExtension;
-    $uploadFileDir = '../uploads/';
-    $dest_path = $uploadFileDir . $newFileName;
+        $urlImagem = $upload['secure_url'];
 
-    if (move_uploaded_file($fileTmpPath, $dest_path)) {
-        // Atualizar a imagem de perfil no banco de dados
-        $queryAtualizaImagem = $db->prepare("UPDATE usuarios SET foto_perfil = :foto_perfil WHERE id = :usuario_id");
-        $queryAtualizaImagem->bindParam(':foto_perfil', $newFileName, PDO::PARAM_STR);
-        $queryAtualizaImagem->bindParam(':usuario_id', $_SESSION['user_id'], PDO::PARAM_INT);
-        $queryAtualizaImagem->execute();
+        // Atualiza o banco de dados
+        require_once('../classes/Database.class.php');
+        $db = new Database();
+        $stmt = $db->prepare("UPDATE perfis SET foto_perfil = :foto WHERE usuario_id = :id");
+        $stmt->bindParam(':foto', $urlImagem, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $_SESSION['user_id'], PDO::PARAM_INT);
+        $stmt->execute();
 
-        // Redirecionar para o perfil com sucesso
-        header("Location: perfil.php?sucesso=1");
+        echo json_encode(['sucesso' => true, 'url' => $urlImagem]);
     } else {
-        // Falha no upload
-        header("Location: perfil.php?erro=erro_upload");
+        throw new Exception('Nenhuma imagem foi enviada.');
     }
+} catch (Exception $e) {
+    echo json_encode(['sucesso' => false, 'erro' => $e->getMessage()]);
 }
-?>

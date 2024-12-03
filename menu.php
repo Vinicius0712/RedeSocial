@@ -21,7 +21,7 @@ $fotoPerfil = isset($_SESSION['foto_perfil']) ? '../img/' . $_SESSION['foto_perf
                     <a class="nav-link" href="#"><i class="fas fa-user-friends"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-store"></i></a>
+                    <a class="nav-link" href="../market/marketplace.php"><i class="fas fa-store"></i></a>
                 </li>
             </ul>
         </div>

@@ -24,6 +24,12 @@ require_once('../classes/Database.class.php');
 <body>
     <?php include('../menu.php'); ?>
 
+    <?php if (isset($_GET['erro'])): ?>
+    <div class="alert alert-danger text-center" role="alert">
+        Erro ao atualizar a imagem de perfil. Por favor, tente novamente.
+    </div>
+<?php endif; ?>
+
     <!-- Profile Header -->
     <div class="container mt-5">
         <div class="profile-header position-relative text-center">
@@ -97,68 +103,115 @@ require_once('../classes/Database.class.php');
     </div>
 
     <!-- Modal do Formulário -->
-    <div class="modal fade" id="publicarModal" tabindex="-1" aria-labelledby="publicarModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="publicarModalLabel">Nova Publicação</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="adicionar_publicacao.php" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="imagem" class="form-label">Imagem da Publicação</label>
-                        <input type="file" class="form-control" id="imagem" name="imagem" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição</label>
-                        <textarea class="form-control" id="descricao" name="descricao" rows="3" placeholder="Escreva uma descrição..."></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Publicar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="editarImagemModal" tabindex="-1" aria-labelledby="editarImagemModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editarImagemModal" tabindex="-1" aria-labelledby="editarImagemModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="editarImagemModalLabel">Editar Imagem de Perfil</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="atualizar_imagem_perfil.php" method="post" enctype="multipart/form-data">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="novaImagemPerfil" class="form-label">Selecione uma nova imagem</label>
-                        <input type="file" class="form-control" id="novaImagemPerfil" name="novaImagemPerfil" required>
-                    </div>
+            <div class="modal-body text-center">
+                <div>
+                    <input type="file" id="novaImagemPerfil" accept="image/*" class="form-control mb-3">
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                <div>
+                    <img id="imagemPreview" style="max-width: 100%; display: none;">
                 </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" id="salvarImagemCortada" class="btn btn-primary">Salvar</button>
+            </div>
         </div>
     </div>
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+
+<script>
+    let cropper;
+
+    document.getElementById('novaImagemPerfil').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const img = document.getElementById('imagemPreview');
+                    img.src = event.target.result;
+                    img.style.display = 'block';
+                    if (cropper) cropper.destroy();
+                    cropper = new Cropper(img, {
+                        aspectRatio: 1,
+                        viewMode: 2,
+                        autoCropArea: 1,
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+   document.getElementById('salvarImagemCortada').addEventListener('click', function () {
+            if (!cropper) {
+                alert('Nenhuma imagem foi selecionada.');
+                return;
+            }
+
+            const canvas = cropper.getCroppedCanvas({
+                width: 300,
+                height: 300,
+            });
+
+            canvas.toBlob(function (blob) {
+                const formData = new FormData();
+                formData.append('imagem', blob);
+
+                fetch('atualizar_imagem_perfil.php', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.sucesso) {
+                            alert('Imagem de perfil atualizada com sucesso!');
+                            window.location.reload();
+                        } else {
+                            alert(`Erro ao atualizar imagem: ${data.erro}`);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Erro ao enviar a imagem. Verifique sua conexão e tente novamente.');
+                        console.error('Detalhes do erro:', error);
+                    });
+            });
+        });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
     <div class="alert alert-success text-center" role="alert">
         Imagem de perfil atualizada com sucesso!
     </div>
 <?php endif; ?>
 
-<?php if (isset($_GET['erro'])): ?>
-    <div class="alert alert-danger text-center" role="alert">
-        Erro ao atualizar a imagem de perfil. Por favor, tente novamente.
-    </div>
-<?php endif; ?>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+        input.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!validImageTypes.includes(file.type)) {
+                    alert('Por favor, envie apenas imagens nos formatos JPG, PNG ou GIF.');
+                    this.value = ''; // Limpa o campo
+                }
+            }
+        });
+    });
+</script>
+
 </body>
 
 </html>

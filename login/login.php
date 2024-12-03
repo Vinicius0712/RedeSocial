@@ -18,14 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($userId) {
             $_SESSION['user_id'] = $userId; // Armazenando o ID do usuário na sessão
-            header('Location: ../perfil/perfil.php');
+            header('Location: ../rede/index.php');
             exit(); 
         } else {
             $_SESSION['error_message'] = "Usuário ou senha incorretos";
             header('Location: ' . $previous_page);
             exit();
         }
-    } catch (Exception $e) {
+    } catch (Exception $e) { 
         $error_message = $e->getMessage();
     }
 }
