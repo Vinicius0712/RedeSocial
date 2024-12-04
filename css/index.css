@@ -2,7 +2,7 @@
 
 
 body {
-    background-color: #000000;
+    background-color: #f0efef;
     font-family: Arial, sans-serif;
 }
 
@@ -201,10 +201,7 @@ h2 {
 }
 
 .suggestions {
-    color: #ddd;
-    background-image: url('../img/back.jpg');
-    background-size: cover;
-    background-position: center;
+    color: #1b1b1b;
 }
 .sug{
     border-radius: 12px;
@@ -231,9 +228,4 @@ h2 {
 }
 
 /* Adicionando o background da imagem fornecida */
-.content-background {
-    background-image: url('../img/back.jpg');
-    background-size: cover;
-    background-position: center;
-}
 

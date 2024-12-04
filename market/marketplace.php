@@ -4,28 +4,27 @@ require_once('../classes/Database.class.php');
 
 session_start();
 
-// Verifica se o usuário está logado
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../login/index.php");
     exit();
 }
 
-// Conecta ao banco de dados
 $db = Database::getInstance();
 
 if (!$db) {
     die("Erro ao conectar com o banco de dados.");
 }
 
-// Consulta para obter as mercadorias cadastradas
 try {
+    // Consulta SQL para obter as mercadorias junto com os dados do usuário
     $query = $db->prepare("SELECT mercadorias.*, usuarios.usuario AS username, perfis.foto_perfil 
                            FROM mercadorias 
-                           JOIN usuarios ON mercadorias.usuario_id = usuarios.id 
-                           JOIN perfis ON usuarios.id = perfis.usuario_id 
+                           JOIN usuarios ON mercadorias.usuario_id = usuarios.id
+                           JOIN perfis ON usuarios.id = perfis.usuario_id
                            ORDER BY mercadorias.data_cadastro DESC");
     $query->execute();
     $mercadorias = $query->fetchAll(PDO::FETCH_ASSOC);
+
 } catch (PDOException $e) {
     echo "Erro ao buscar mercadorias: " . $e->getMessage();
     exit();
@@ -50,34 +49,42 @@ try {
 
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar -->
-            <div class="col-md-3 col-lg-2 d-none d-md-block bg-white sidebar py-4" id="side">
+            <!-- Sidebar com filtros -->
+            <div class="col-md-3 col-lg-2 bg-white sidebar py-4" id="side">
                 <a class="logo" href="#">
                     <img src="../img/synergy2.png" class="logo" alt="Synergy Logo" draggable="false">
                 </a>
-                <h4 class="site-name" id="siteName">Synergy</h4><br>
-                
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fas fa-home"></i> Página Inicial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../perfil/perfil.php"><i class="fas fa-user"></i> Meu Perfil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-comments"></i> Mensagens</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-cog"></i> Configurações</a>
-                    </li>
-                    <li class="sair-link">
-                        <a class="nav-link" href="../acao/logout.php"><i class="fas fa-sign-out-alt"></i> Sair</a>
-                    </li>
+                <h4 class="site-name">Synergy</h4><br>
+
+                <!-- Categorias -->
+                <h5>Categorias</h5>
+                <ul class="list-group mb-4">
+                    <li class="list-group-item"><a href="#">Eletrônicos</a></li>
+                    <li class="list-group-item"><a href="#">Casa e Jardim</a></li>
+                    <li class="list-group-item"><a href="#">Vestuário</a></li>
+                    <li class="list-group-item"><a href="#">Esportes</a></li>
+                    <li class="list-group-item"><a href="#">Veículos</a></li>
+                    <li class="list-group-item"><a href="#">Serviços</a></li>
+                    <li class="list-group-item"><a href="#">Outros</a></li>
                 </ul>
+
+                <!-- Filtros -->
+                <h5>Filtros</h5>
+                <form method="GET" action="">
+                    <div class="mb-3">
+                        <label for="preco" class="form-label">Preço Máximo:</label>
+                        <input type="number" class="form-control" id="preco" name="preco" placeholder="Ex: 100.00">
+                    </div>
+                    <div class="mb-3">
+                        <label for="localizacao" class="form-label">Localização:</label>
+                        <input type="text" class="form-control" id="localizacao" name="localizacao" placeholder="Ex: São Paulo">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                </form>
             </div>
 
-            <!-- Área principal do Marketplace -->
-            <main class="col-md-7 content-background">
+            <!-- Conteúdo principal -->
+            <main class="col-md-7">
                 <div class="d-flex justify-content-between align-items-center my-4">
                     <h2>Marketplace</h2>
                     <a href="adicionar_produto.php" class="btn btn-primary">Vender algo</a>
@@ -110,20 +117,6 @@ try {
                     <?php endforeach; ?>
                 </div>
             </main>
-
-            <!-- Barra de sugestões -->
-            <aside class="col-lg-3 d-none d-lg-block suggestions py-3">
-                <h5>Categorias</h5>
-                <ul class="list-group">
-                    <li class="list-group-item"><a href="#">Eletrônicos</a></li>
-                    <li class="list-group-item"><a href="#">Casa e Jardim</a></li>
-                    <li class="list-group-item"><a href="#">Vestuário</a></li>
-                    <li class="list-group-item"><a href="#">Esportes</a></li>
-                    <li class="list-group-item"><a href="#">Veículos</a></li>
-                    <li class="list-group-item"><a href="#">Serviços</a></li>
-                    <li class="list-group-item"><a href="#">Outros</a></li>
-                </ul>
-            </aside>
         </div>
     </div>
 </body>

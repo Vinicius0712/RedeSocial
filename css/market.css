@@ -1,32 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Dela+Gothic+One&display=swap');
+
+.navbar-custom {
+    background-image: linear-gradient(9deg, #27776b, #063d58);
+}
+
+
+.navbar-custom .navbar-nav .nav-link {
+    color: #747171;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.navbar-custom .navbar-nav .nav-link:hover {
+    color: #d8d8d8;
+}
+
+.navbar-custom .navbar-nav .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-custom .brand-name {
+    font-family: "Dela Gothic One", sans-serif;
+    font-size: 28px; /* Ajusta o tamanho da fonte */
+    color: #ffffff;  /* Cor do texto */
+    font-weight: normal; /* Ajusta o peso, se necessário */
+    margin-left: 15px; /* Adiciona margem para espaçamento, se necessário */
+}
+
+.navbar-custom .navbar-nav .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
 .card {
+    border: none;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .card-img-top {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     height: 200px;
     object-fit: cover;
 }
 
-.profile-info img {
-    border-radius: 50%;
+.card-body {
+    text-align: center;
 }
 
-.content-background {
-    background-color: #f5f5f5;
+aside {
+    background: white;
     padding: 20px;
-}
-
-.suggestions ul {
-    padding: 0;
-}
-
-.suggestions ul li {
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.suggestions ul li:hover {
-    background-color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
