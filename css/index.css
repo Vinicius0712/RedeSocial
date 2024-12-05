@@ -85,11 +85,17 @@ h2 {
     display: block; /* Faz o link ocupar toda a área disponível */
 }
 
+
 /* Estilo para links que não contêm imagens */
 .sidebar a:not(:has(img)):hover {
-    background-color: #ddd;
+    background-color: #eeeeee;
     color: #13678A;
     border-radius: 10px;
+}
+
+.nav-link.active {
+    color: #13678A;
+    border-radius: 8px; /* Bordas arredondadas */
 }
 
 .sidebar {
@@ -168,8 +174,7 @@ h2 {
 .post img:not(#profile) {
     width: 100%; /* Reduzir a largura da imagem */
     border-radius: 8px; /* Borda arredondada na imagem */
-    max-height: 500px; /* Limitar a altura máxima da imagem */
-    object-fit: contain; /* Ajusta a imagem para cobrir a área disponível sem distorção */
+    max-height: 550px; /* Limitar a altura máxima da imagem */
 }
 
 .post {
@@ -227,5 +232,23 @@ h2 {
     background-color: #f0f0f0;
 }
 
-/* Adicionando o background da imagem fornecida */
+.user-profile {
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+    margin-top: 20px;
+}
+
+.user-profile img {
+    object-fit: cover;
+}
+
+.user-profile h6 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.user-profile small {
+    font-size: 0.85rem;
+    color: #c2bfbf;
+}
 

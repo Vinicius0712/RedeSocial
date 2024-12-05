@@ -43,7 +43,26 @@ try {
     <link rel="stylesheet" href="../css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<style>
 
+.accordion-button {
+    color: #000;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #13678A;
+}
+
+.accordion-body ul li a {
+    text-decoration: none;
+    color: #13678A;
+}
+
+.accordion-body ul li a:hover {
+    text-decoration: underline;
+}
+</style>
 <body>
     <?php include('../menu.php'); ?>
 
@@ -58,15 +77,46 @@ try {
 
                 <!-- Categorias -->
                 <h5>Categorias</h5>
-                <ul class="list-group mb-4">
-                    <li class="list-group-item"><a href="#">Eletrônicos</a></li>
-                    <li class="list-group-item"><a href="#">Casa e Jardim</a></li>
-                    <li class="list-group-item"><a href="#">Vestuário</a></li>
-                    <li class="list-group-item"><a href="#">Esportes</a></li>
-                    <li class="list-group-item"><a href="#">Veículos</a></li>
-                    <li class="list-group-item"><a href="#">Serviços</a></li>
+<div class="accordion" id="categoriasAccordion">
+    <!-- Eletrônicos -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingEletronicos">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEletronicos" aria-expanded="false" aria-controls="collapseEletronicos">
+                Eletrônicos
+            </button>
+        </h2>
+        <div id="collapseEletronicos" class="accordion-collapse collapse" aria-labelledby="headingEletronicos" data-bs-parent="#categoriasAccordion">
+            <div class="accordion-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Celulares</a></li>
+                    <li class="list-group-item"><a href="#">Computadores</a></li>
+                    <li class="list-group-item"><a href="#">Televisores</a></li>
+                    <li class="list-group-item"><a href="#">Acessórios</a></li>
                     <li class="list-group-item"><a href="#">Outros</a></li>
                 </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Casa e Jardim -->
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingCasaJardim">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCasaJardim" aria-expanded="false" aria-controls="collapseCasaJardim">
+                Casa e Jardim
+            </button>
+        </h2>
+        <div id="collapseCasaJardim" class="accordion-collapse collapse" aria-labelledby="headingCasaJardim" data-bs-parent="#categoriasAccordion">
+            <div class="accordion-body">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="#">Móveis</a></li>
+                    <li class="list-group-item"><a href="#">Decoração</a></li>
+                    <li class="list-group-item"><a href="#">Utensílios</a></li>
+                    <li class="list-group-item"><a href="#">Outros</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Outras categorias seguem a mesma lógica -->
+</div>
 
                 <!-- Filtros -->
                 <h5>Filtros</h5>
@@ -85,9 +135,9 @@ try {
 
             <!-- Conteúdo principal -->
             <main class="col-md-7">
-                <div class="d-flex justify-content-between align-items-center my-4">
-                    <h2>Marketplace</h2>
-                    <a href="adicionar_produto.php" class="btn btn-primary">Vender algo</a>
+                <div class="d-flex justify-content-between align-items-center my-4" >
+                    <h2 style="color: black;">Marketplace</h2>
+                    <a href="adicionar_produto.php"  class="btn btn-primary">Vender algo</a>
                 </div>
 
                 <!-- Exibindo as mercadorias -->

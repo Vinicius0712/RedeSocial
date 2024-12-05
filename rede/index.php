@@ -24,7 +24,6 @@ try {
                            ORDER BY publicacoes.created_at DESC");
     $query->execute();
     $publicacoes = $query->fetchAll(PDO::FETCH_ASSOC);
-
 } catch (PDOException $e) {
     echo "Erro ao buscar publicações: " . $e->getMessage();
     exit();
@@ -59,22 +58,75 @@ try {
 
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fas fa-home"></i> Página Inicial</a>
+                        <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'index.php') !== false ? 'active' : '' ?>"
+                            href="#"><i class="fas fa-home"></i> Página Inicial</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../perfil/perfil.php"><i class="fas fa-user"></i> Meu Perfil</a>
+                        <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'perfil.php') !== false ? 'active' : '' ?>"
+                            href="../perfil/perfil.php"><i class="fas fa-user"></i> Meu Perfil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-comments"></i> Mensagens</a>
+                        <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'perfil.php') !== false ? 'active' : '' ?>"
+                            href="../market/marketplace.php"><i class="fas fa-shopping-cart"></i> Marketplace</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-cog"></i> Configurações</a>
+                        <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'mensagens.php') !== false ? 'active' : '' ?>"
+                            href="#"><i class="fas fa-comments"></i> Mensagens</a>
                     </li>
-
-                    <li class="sair-link">
-                        <a class="nav-link" href="../acao/logout.php"><i class="fas fa-sign-out-alt"></i> Sair</a>
+                    <li class="nav-item">
+                        <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'grupos.php') !== false ? 'active' : '' ?>"
+                            href="#"><i class="fas fa-users"></i> Grupos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'configuracoes.php') !== false ? 'active' : '' ?>"
+                            href="#"><i class="fas fa-cog"></i> Configurações</a>
                     </li>
                 </ul>
+                
+<br><br><br><br><br><br><br><br><br>
+
+                <!-- Perfil do Usuário -->
+                <div class="user-profile mt-4 d-flex align-items-center justify-content-between">
+                    <?php
+                    // Consulta ao banco de dados para buscar as informações do usuário logado
+                    $queryUsuario = $db->prepare("SELECT usuarios.usuario AS username, perfis.foto_perfil 
+                                  FROM usuarios 
+                                  JOIN perfis ON usuarios.id = perfis.usuario_id 
+                                  WHERE usuarios.id = :user_id");
+                    $queryUsuario->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+                    $queryUsuario->execute();
+                    $usuario = $queryUsuario->fetch(PDO::FETCH_ASSOC);
+
+                    $fotoUsuario = !empty($usuario['foto_perfil']) ? '../img/' . htmlspecialchars($usuario['foto_perfil']) : '../img/default.jpg';
+                    $nomeUsuario = htmlspecialchars($usuario['username'] ?? 'Usuário');
+                    ?>
+                    <a href="../perfil/perfil.php">
+                    <div class="d-flex align-items-center">
+                        
+                        <img src="<?= $fotoUsuario ?>" alt="Foto de Perfil" class="rounded-circle me-2" width="50"
+                            height="50">
+                        <div>
+                            <h6 class="mb-0"><?= $nomeUsuario ?></h6>
+                            <small class="text-muted">@<?= $nomeUsuario ?></small>
+                        </div>
+                    </div>
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-light btn-sm" type="button" id="profileMenuButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileMenuButton">
+                            <li><a class="dropdown-item" href="../perfil/perfil.php">Ver Perfil</a></li>
+                            <li><a class="dropdown-item" href="../config/configuracoes.php">Configurações</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item text-danger" href="../acao/logout.php">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
 
             <main class="col-md-7 content-background">
@@ -93,7 +145,8 @@ try {
                                 <?php
                                 $fotoPerfil = !empty($publicacao['foto_perfil']) ? '../img/' . htmlspecialchars($publicacao['foto_perfil']) : '../img/default.jpg';
                                 ?>
-                                <img src="<?= $fotoPerfil ?>" alt="Profile" id="profile" class="rounded-circle" width="50" height="50">
+                                <img src="<?= $fotoPerfil ?>" alt="Profile" id="profile" class="rounded-circle" width="50"
+                                    height="50">
                                 <div>
                                     <h5 class="card-title mb-0"><?= htmlspecialchars($publicacao['username']) ?></h5>
                                     <p class="card-text"><small
@@ -131,7 +184,6 @@ try {
         var logo = document.querySelector('.logo img');
         var siteName = document.getElementById('siteName');
 
-        // Verifica se a página foi rolada mais de 100px
         if (window.scrollY > 90) {
             siteName.classList.add('show');
         } else {

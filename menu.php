@@ -15,13 +15,16 @@ $fotoPerfil = isset($_SESSION['foto_perfil']) ? '../img/' . $_SESSION['foto_perf
         <div class="collapse navbar-collapse justify-content-center order-lg-2">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="../rede/index.php"><i class="fas fa-home"></i></a>
+                    <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'index.php') !== false ? 'active' : '' ?>"
+                        href="../rede/index.php"><i class="fas fa-home"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-user-friends"></i></a>
+                    <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'amigos.php') !== false ? 'active' : '' ?>"
+                        href="#"><i class="fas fa-user-friends"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../market/marketplace.php"><i class="fas fa-store"></i></a>
+                    <a class="nav-link <?= strpos($_SERVER['SCRIPT_NAME'], 'marketplace.php') !== false ? 'active' : '' ?>"
+                        href="../market/marketplace.php"><i class="fas fa-store"></i></a>
                 </li>
             </ul>
         </div>
@@ -30,7 +33,8 @@ $fotoPerfil = isset($_SESSION['foto_perfil']) ? '../img/' . $_SESSION['foto_perf
             <!-- <a href="#" class="nav-link"><i class="fas fa-bell"></i><span class="badge bg-danger"></span></a> -->
 
             <a href="../perfil/perfil.php" class="nav-link">
-                <img src="<?php echo $fotoPerfil; ?>" alt="Profile" class="profile-icon" draggable="false" style="width: 50px; height: 45px; border-radius: 50%;">
+                <img src="<?php echo $fotoPerfil; ?>" alt="Profile" class="profile-icon" draggable="false"
+                    style="width: 50px; height: 45px; border-radius: 50%;">
             </a>
 
         </div>
