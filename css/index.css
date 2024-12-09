@@ -5,7 +5,6 @@ body {
     background-color: #f0efef;
     font-family: Arial, sans-serif;
 }
-
 .navbar-custom {
     background-image: linear-gradient(9deg, #27776b, #063d58); /* Gradiente diagonal de azul escuro para azul claro */
     background-color: #012030; /* Cor de fallback no caso de o gradiente não ser suportado */

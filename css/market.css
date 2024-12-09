@@ -1,18 +1,42 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Dela+Gothic+One&display=swap');
 
+
 body {
     background-color: #f0efef;
     font-family: Arial, sans-serif;
 }
-
 .navbar-custom {
-    background-image: linear-gradient(9deg, #27776b, #063d58);
-    background-color: #012030;
+    background-image: linear-gradient(9deg, #27776b, #063d58); /* Gradiente diagonal de azul escuro para azul claro */
+    background-color: #012030; /* Cor de fallback no caso de o gradiente não ser suportado */
+}
+
+
+/* Título abaixo da logo */
+.site-name {
+    display: none; /* Inicialmente oculto */
+    font-size: 30px;
+    color: #000;
+    text-align: center;
+    margin-top: 10px;
+    opacity: 0; /* Invisível inicialmente */
+    transition: opacity 0.3s ease-in-out; /* Transição suave de opacidade */
+}
+
+.site-name.show {
+    display: block; /* Mostra o título */
+    opacity: 1; /* Transição para visível */
+}
+
+
+h2 {
+    color: #ffffff;
 }
 
 .navbar-custom .navbar-nav .nav-link {
     color: #747171;
     font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .navbar-custom .navbar-nav .nav-link:hover {
@@ -24,54 +48,113 @@ body {
     border-bottom: 3px solid #45C4B0;
 }
 
-.sidebar {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    padding: 1rem;
-    background-color: #fff;
+.navbar-custom .navbar-nav .nav-item {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
-.sidebar ul {
-    padding: 0;
-    margin: 0;
-    width: 100%;
+.navbar-custom .brand-name {
+    font-family: "Dela Gothic One", sans-serif;
+    font-size: 28px; /* Ajusta o tamanho da fonte */
+    color: #ffffff;  /* Cor do texto */
+    font-weight: normal; /* Ajusta o peso, se necessário */
+    margin-left: 15px; /* Adiciona margem para espaçamento, se necessário */
 }
 
-.sidebar li {
-    width: 100%;
-    margin: 7px;
+.navbar-custom .navbar-nav .nav-link.profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px; /* Espaçamento entre o ícone e o texto */
+    font-size: 20px; /* Define o tamanho dos ícones */
+    width: 20px; /* Mantém a largura uniforme dos ícones */
+    height: 20px; /* Mantém a altura uniforme dos ícones */
+    display: inline-block; /* Garante que os ícones mantenham o tamanho */
+    text-align: center; /* Centraliza o ícone dentro do espaço disponível */
+    vertical-align: middle; /* Centraliza verticalmente o ícone */
 }
 
 .sidebar a {
     font-size: 18px;
     color: #000;
-    text-decoration: none;
-    display: block;
+    text-decoration: none; /* Remove o sublinhado dos links */
+    display: block; /* Faz o link ocupar toda a área disponível */
 }
 
-.sidebar a:hover {
-    background-color: #ddd;
+
+/* Estilo para links que não contêm imagens */
+.sidebar a:not(:has(img)):hover {
+    background-color: #eeeeee;
     color: #13678A;
     border-radius: 10px;
 }
 
-.sidebar .logo img {
-    max-width: 60%;
-    height: auto;
-    margin-bottom: 5px;
+.nav-link.active {
+    color: #13678A;
+    border-radius: 8px; /* Bordas arredondadas */
 }
 
-.post img:not(#profile) {
-    width: 100%;
-    border-radius: 8px;
-    max-height: 500px;
-    object-fit: contain;
+.sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: 100vh; /* Ajusta a altura da sidebar */
+    overflow-y: auto; /* Adiciona rolagem interna */
+    display: flex; /* Adiciona flexbox à sidebar */
+    flex-direction: column; /* Organiza os itens verticalmente */
+    align-items: center; /* Centraliza horizontalmente os itens */
+    padding-top: 20px; /* Espaço superior para a logo */
+    padding: 1rem;
 }
+
+
+.sidebar ul {
+    padding: 0; /* Remove qualquer padding padrão da lista */
+    margin: 0; /* Remove margens adicionais */
+    width: 100%; /* Garante que a lista ocupe toda a largura */
+}
+
+
+.sidebar li {
+    width: 100%; /* Garante que os itens ocupem toda a largura da lista */
+    margin: 7px;
+}
+
+
+.sair-link {
+    margin-top: auto; /* Empurra o botão "Sair" para o final da sidebar */
+    
+}
+
+.sair-link .nav-link {
+    color: red; /* Cor de fundo vermelha */
+    width: 100%; /* Garante que os itens ocupem toda a largura da lista */
+    border-radius: 5px; /* Bordas arredondadas para o botão */
+    transition: background-color 0.7s ease; /* Animação suave ao passar o mouse */
+}
+
+.sair-link .nav-link:hover {
+    color: darkred; /* Muda para um vermelho mais escuro ao passar o mouse */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+.main-content {
+    margin-left: 17%; /* Ajuste o valor conforme necessário para que o conteúdo principal não sobreponha a sidebar */
+}
+
+.sidebar .logo {
+    text-align: center; /* Centraliza o texto e a imagem da logo */
+    margin-bottom: 5px; /* Espaço abaixo da logo */
+}
+
+.sidebar .logo img {
+    max-width: 60%; /* Garante que a imagem da logo não ultrapasse o contêiner */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
 
 .post {
     background-color: #ffffff;
@@ -94,21 +177,77 @@ body {
     margin-right: 10px;
 }
 
-.accordion-button {
-    font-weight: bold;
-    color: #000;
+.card {
+    height: 100%; /* Garante que todas as cards tenham a mesma altura */
+    background-color: #fff; /* Fundo branco para destaque */
+    border: 1px solid #ddd; /* Borda leve */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.accordion-button:not(.collapsed) {
-    background-color: #f8f9fa;
-    color: #13678A;
+.card-img-top {
+    height: 200px; /* Define uma altura fixa para as imagens */
+    object-fit: cover; /* Mantém a proporção e corta o excesso */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
-.accordion-body ul li a {
-    text-decoration: none;
-    color: #13678A;
+.card-body {
+    padding: 1rem;
+    text-align: center;
 }
 
-.accordion-body ul li a:hover {
-    text-decoration: underline;
+.profile-info img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.btn-outline-primary {
+    width: 100%; /* Botão ocupa a largura total */
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown .btn-light {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown .btn-light:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.btn-primary {
+    background-color: #21695f;
+    border-color: #185249;
+}
+
+.btn-primary:hover {
+    background-color: #45C4B0;
+    border-color: #45C4B0;
+}
+
+.btn-outline-primary {
+    color: #21695f;
+    border-color: #21695f;
+}
+
+.btn-outline-primary:hover {
+    background-color: #2e7469;
+    color: #fff;
 }
