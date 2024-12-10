@@ -82,8 +82,8 @@ try {
                             href="#"><i class="fas fa-cog"></i> Configurações</a>
                     </li>
                 </ul>
-                
-<br><br><br><br><br><br><br><br><br>
+
+                <br><br><br><br><br><br><br><br><br>
 
                 <!-- Perfil do Usuário -->
                 <div class="user-profile mt-4 d-flex align-items-center justify-content-between">
@@ -101,15 +101,15 @@ try {
                     $nomeUsuario = htmlspecialchars($usuario['username'] ?? 'Usuário');
                     ?>
                     <a href="../perfil/perfil.php">
-                    <div class="d-flex align-items-center">
-                        
-                        <img src="<?= $fotoUsuario ?>" alt="Foto de Perfil" class="rounded-circle me-2" width="50"
-                            height="50">
-                        <div>
-                            <h6 class="mb-0"><?= $nomeUsuario ?></h6>
-                            <small class="text-muted">@<?= $nomeUsuario ?></small>
+                        <div class="d-flex align-items-center">
+
+                            <img src="<?= $fotoUsuario ?>" alt="Foto de Perfil" class="rounded-circle me-2" width="50"
+                                height="50">
+                            <div>
+                                <h6 class="mb-0"><?= $nomeUsuario ?></h6>
+                                <small class="text-muted">@<?= $nomeUsuario ?></small>
+                            </div>
                         </div>
-                    </div>
                     </a>
                     <div class="dropdown">
                         <button class="btn btn-light btn-sm" type="button" id="profileMenuButton"
@@ -131,11 +131,26 @@ try {
 
             <main class="col-md-7 content-background">
                 <div class="d-flex align-items-center my-4 stories">
-                    <img src="https://via.placeholder.com/60" alt="Story 1">
-                    <img src="https://via.placeholder.com/60" alt="Story 2">
-                    <img src="https://via.placeholder.com/60" alt="Story 3">
-                    <img src="https://via.placeholder.com/60" alt="Story 4">
+                    <?php
+                    // Consulta para buscar os perfis dos usuários para os stories
+                    $queryStories = $db->prepare("SELECT usuarios.id, usuarios.usuario AS username, perfis.foto_perfil 
+                                  FROM usuarios 
+                                  JOIN perfis ON usuarios.id = perfis.usuario_id 
+                                  WHERE usuarios.id != :current_user_id 
+                                  LIMIT 5");
+                    $queryStories->bindParam(':current_user_id', $_SESSION['user_id'], PDO::PARAM_INT);
+                    $queryStories->execute();
+                    $stories = $queryStories->fetchAll(PDO::FETCH_ASSOC);
+
+                    foreach ($stories as $story) {
+                        $fotoStory = !empty($story['foto_perfil']) ? '../img/' . htmlspecialchars($story['foto_perfil']) : '../img/default.jpg';
+                        echo '<a href="../perfil/perfil.php?user_id=' . urlencode($story['id']) . '" class="me-3">';
+                        echo '<img src="' . $fotoStory . '" alt="Story de ' . htmlspecialchars($story['username']) . '" class="rounded-circle" width="60" height="60">';
+                        echo '</a>';
+                    }
+                    ?>
                 </div>
+
 
                 <!-- Loop para exibir as publicações -->
                 <?php foreach ($publicacoes as $publicacao): ?>

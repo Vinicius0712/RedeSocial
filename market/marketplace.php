@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+
 // Captura os filtros do formulário
 $precoMax = $_GET['preco'] ?? null;
 $localizacao = $_GET['localizacao'] ?? null;
@@ -110,24 +111,28 @@ try {
                                 <div class="position-relative">
                                     <img src="<?php echo $produto['imagem'] ? '../uploads/' . htmlspecialchars($produto['imagem']) : '../img/default.jpg'; ?>"
                                         class="card-img-top" alt="Imagem do Produto">
+
                                     <!-- Menu de opções aqui -->
+                                    <?php if ($_SESSION['user_id'] == $produto['usuario_id']): ?>
                                     <div class="dropdown position-absolute" style="top: 10px; right: 10px;">
+                                    
                                         <button class="btn btn-light btn-sm" type="button" data-bs-toggle="dropdown"
                                             aria-expanded="false">
                                             <i class="fas fa-ellipsis-v"></i>
                                         </button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item" href="#">Ver detalhes</a></li>
-                                            <?php if ($_SESSION['user_id'] == $produto['usuario_id']): ?>
+                                            
                                                 <li><a class="dropdown-item"
                                                         href="editar_produto.php?id=<?= $produto['id'] ?>">Editar mercadoria</a>
                                                 </li>
                                                 <li><a class="dropdown-item"
                                                         href="editar_produto.php?id=<?= $produto['id'] ?>">Excluir</a>
                                                 </li>
-                                            <?php endif; ?>
+                                            
                                         </ul>
                                     </div>
+                                    <?php endif; ?>
                                 </div>
                                 <!-- Informações do produto -->
                                 <div class="card-body">
