@@ -39,6 +39,15 @@ CREATE TABLE mercadorias (
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
 
+CREATE TABLE seguidores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    seguidor_id INT NOT NULL,
+    seguido_id INT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (seguidor_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (seguido_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
 
 
 
